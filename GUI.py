@@ -46,6 +46,14 @@ def adddropdowns(window):
     Button(window, text="-", command=takeAction(act.get())).grid(row=3)
     
     OptionMenu(window, act, *actions(), command=namebutton).grid(row=2, column=1)
+    global bookType
+    try:
+        bookType.set(books()[0])
+        OptionMenu(window, bookType, *books(), command=selectbook).grid(row=1,column=2)
+    except:
+        bookType.set("Great library...no books")
+        OptionMenu(window, bookType, "Great library...no books", *books(), command=selectbook).grid(row=1,column=2)
+    
     
 
 def namebutton(event):
@@ -59,9 +67,19 @@ def actions():
     varlist.append("Check Out")
     return varlist
 
+def books():
+    varlist =[]
+    varlist.append("All Overdue")
+    varlist.append("Overdue Patrons")
+    varlist.append("Checked out Items")
+    varlist.append("All Items")
+    return varlist
+
 def takeAction(stringer):
     pass
 
+def selectbook(event):
+    pass
     
 
 lib = library.Library()
@@ -69,6 +87,7 @@ lib.loadCatalog('filename')
 lib.loadPatrons('filename2')
 root = buildwindow()
 act = StringVar()
+bookType = StringVar()
 adddropdowns(root)
 root.mainloop()
 
