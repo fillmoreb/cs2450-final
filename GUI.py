@@ -69,10 +69,12 @@ def actions():
 
 def books():
     varlist =[]
+    varlist.append("Available Books")
     varlist.append("All Overdue")
     varlist.append("Overdue Patrons")
     varlist.append("Checked out Items")
     varlist.append("All Items")
+    varlist.append("Patrons with Books")
     return varlist
 
 def takeAction(stringer):
